@@ -1,0 +1,55 @@
+terraform {
+  required_providers {
+    azurerm = {
+      source = "hashicorp/azurerm"
+      version = "4.30.0"
+    }
+  }
+}
+
+provider "azurerm" {
+  # Configuration options
+    subscription_id = "cb43a5e2-9659-432d-a1dd-96d79f2cb1ae"
+    features {
+      
+    }
+}
+
+
+resource "azurerm_resource_group" "example" {
+  name     = "LoadBalancerRG"
+  location = "West Europe"
+}
+
+resource "azurerm_public_ip" "example" {
+  name                = "PublicIPForLB"
+  location            = azurerm_resource_group.example.location
+  resource_group_name = azurerm_resource_group.example.name
+  allocation_method   = "Static"
+}
+
+resource "azurerm_lb" "example" {
+  name                = "TestLoadBalancer"
+  location            = azurerm_resource_group.example.location
+  resource_group_name = azurerm_resource_group.example.name
+
+  frontend_ip_configuration {
+    name                 = "PublicIPAddress"
+    public_ip_address_id = azurerm_public_ip.example.id
+  }
+}
+
+# Azure Concepts - Along With Terraform
+# IAM
+# Resource Groups
+# VMs
+# Vnets & Subnets
+# Load Balancers
+# Key Vaults
+# AKS
+# Nodes
+# Storage Accounts & Containers
+# Frond Door and CDN Profiles
+# WAF Policies
+# VPN Gateways
+# Private Links
