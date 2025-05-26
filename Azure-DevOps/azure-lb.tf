@@ -39,17 +39,3 @@ resource "azurerm_lb" "example" {
   }
 }
 
-# Azure Concepts - Along With Terraform
-# IAM
-# Resource Groups
-# VMs
-# Vnets & Subnets
-# Load Balancers
-# Key Vaults
-# AKS
-# Nodes
-# Storage Accounts & Containers
-# Frond Door and CDN Profiles
-# WAF Policies
-# VPN Gateways
-# Private Links
