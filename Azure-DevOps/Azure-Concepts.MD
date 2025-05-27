@@ -116,3 +116,192 @@ Users --> App Gateway --> Web Application Firewall --> Azure Firwall Premium -->
 2. Azure VPN Gateway
 3. Vnet Gateway
 4. Site To Site VPN
+
+
+1. How do you design a scalable network architecture using Azure Virtual Networks?
+To design a scalable network:
+
+Use Hub-and-Spoke topology for isolation and central management.
+
+Enable VNet peering for efficient traffic flow.
+
+Use Network Security Groups (NSGs) and Application Security Groups (ASGs) for granular control.
+
+Integrate with Azure Firewall or NVA for centralized traffic filtering.
+
+Design subnets based on workload and scale with Address Space Planning.
+
+2. How does Azure Policy help in enforcing compliance across subscriptions?
+Azure Policy helps enforce standards and compliance by:
+
+Defining policies that audit or block non-compliant resources.
+
+Applying initiative definitions to group multiple policies.
+
+Using remediation tasks to fix existing non-compliant resources.
+
+Scoping policies across management groups, subscriptions, or resource groups.
+
+3. What’s the difference between Azure RBAC and Azure AD roles?
+
+Azure RBAC: Controls access to Azure resources like VMs, storage, etc.
+
+Azure AD roles: Manage access to directory-level functions (e.g., user/group management, MFA settings).
+
+Example: A user can be a User Administrator (AD role) and Reader (RBAC) on a resource group.
+
+4. How do you use Managed Identities in automation workflows?
+
+Use System-assigned identities for VMs, Functions, AKS, etc., to access resources like Key Vault.
+
+Use User-assigned identities when multiple resources share a common identity.
+
+Avoid secrets by allowing the identity to directly authenticate with Azure resources.
+
+🚀 Kubernetes (AKS) & Deployment Practices
+5. How would you perform a zero-downtime deployment in AKS using Helm?
+
+Use Rolling Update strategy in the Deployment.
+
+Configure readinessProbes to ensure traffic only reaches ready pods.
+
+Use helm upgrade with --atomic and --wait for safe deployments.
+
+Set maxUnavailable=0 in strategy to avoid taking down running pods.
+
+6. What’s the difference between affinity and anti-affinity rules in pod scheduling?
+
+Affinity: Schedules pods together (e.g., same node or zone).
+
+Anti-affinity: Ensures pods are distributed apart to improve availability.
+
+Used via requiredDuringSchedulingIgnoredDuringExecution or preferred....
+
+7. How do you auto-scale AKS workloads based on CPU and memory?
+
+Use Horizontal Pod Autoscaler (HPA) to scale pods based on CPU/memory.
+
+Ensure Metrics Server is installed.
+
+Use Cluster Autoscaler to add/remove nodes automatically.
+
+8. What tools do you use to monitor and trace service communication within AKS?
+
+Azure Monitor & Log Analytics for performance and logs.
+
+Prometheus & Grafana for custom metrics.
+
+Kiali + Istio or OpenTelemetry for service tracing and mesh observability.
+
+🚀 CI/CD Pipelines – Azure DevOps & GitOps
+9. How do you implement a gated check-in in Azure Repos?
+
+Use Branch Policies to require PRs before merging.
+
+Set build validation with Azure Pipelines.
+
+Enforce code reviewers, work item linking, and status checks.
+
+10. How do you integrate Terraform provisioning into Azure Pipelines?
+
+Use the Terraform task extension in Azure DevOps.
+
+Break pipeline into stages: init, validate, plan, and apply.
+
+Store state in Azure Storage with a lock via Blob Lease.
+
+Inject secrets from Key Vault.
+
+11. What’s your rollback strategy for a failed deployment in production?
+
+Use Helm rollback or redeploy previous stable release.
+
+For infra: terraform plan -out and revert using previous state or backup.
+
+CI/CD: Maintain a versioned artifact history and use release approvals.
+
+12. Compare Blue-Green and Canary deployments – when would you use each?
+
+Blue-Green: Two environments (live + idle); switch traffic instantly.
+
+Best for big bang releases with minimal risk.
+
+Canary: Gradual rollout to a subset; monitor before full rollout.
+
+Best for testing in production, reducing blast radius.
+
+🚀 Infrastructure as Code – Terraform
+13. How do you manage shared modules across teams in Terraform?
+
+Create centralized modules stored in Git or Terraform Registry.
+
+Use versioning for backward compatibility.
+
+Enforce standards via module inputs/outputs and documentation.
+
+14. How do you structure Terraform code for multi-environment deployments?
+
+Use separate folders or workspaces: dev/, stage/, prod/.
+
+Separate backend config, TFVars, and environment-specific overrides.
+
+Use a root module that consumes shared modules.
+
+15. What’s your approach to state file locking and secure backend storage?
+
+Store state in Azure Blob Storage.
+
+Enable state locking using Blob Lease mechanism.
+
+Encrypt state at rest and use RBAC/Key Vault for access control.
+
+16. Explain how you use variables, locals, and outputs efficiently in large projects.
+
+Variables: Define dynamic inputs using variables.tf and *.tfvars.
+
+Locals: Used for DRY logic and intermediate values.
+
+Outputs: Share critical info across modules or pipeline outputs.
+
+🚀 Troubleshooting & Debugging Scenarios
+17. A pod in AKS fails to mount a persistent volume. How do you troubleshoot it?
+
+Check pod events: kubectl describe pod <pod-name>.
+
+Validate PVC and PV status.
+
+Check if Storage Class exists and supported.
+
+Review Azure Disk/File Share permissions.
+
+18. Your CI pipeline starts timing out. What steps will you take to identify the root cause?
+
+Check for infinite loops, hanging scripts, or long-running jobs.
+
+Review build agent logs.
+
+Investigate network delays, package installs, or external dependencies.
+
+Consider increasing timeout or optimizing scripts.
+
+19. What is the impact of DNS resolution failure in Kubernetes and how to fix it?
+
+Pods can’t reach services; inter-service communication fails.
+
+Debug with:
+
+sh
+Copy
+Edit
+kubectl exec -it <pod> -- nslookup <service>  
+Restart CoreDNS pods, check configmaps and DNS policies.
+
+20. A Terraform apply fails due to dependency conflicts — how do you resolve it?
+
+Use terraform graph to visualize dependencies.
+
+Split resources into multiple modules or use depends_on.
+
+Ensure correct resource references and ordering.
+
+Manually refresh state if needed: terraform refresh.
