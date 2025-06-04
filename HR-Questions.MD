@@ -2,7 +2,7 @@
 
 - 1: What is the average hike per annum in the organization?
 - 2: Are there any one-time bonuses or relocation benefits provided upon joining ?
-- 3: Will I be included in the current salary appraisal?
+- 3: Will I be included in the current salary appraisal & Promotion Cycle?
 - 4: How does the company reward the top performer/ extra effort?
 - 5: Do they offer medical insurance for dependents?
 - 6: What kind of project will you be working on? (is it something that will challenge/ help me grow)
