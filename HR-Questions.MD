@@ -11,7 +11,7 @@
 ## HR Questions To Us and Answers
 
 **1: Why Should we hire You ?**
-- 1: Your decision to hire me would provide me an excellent platform for showcasing my skills. I am Commited to acheiving a set of goals promptly
+- 1: Your decision to hire me would provide me an excellent platform for showcasing my skills. I am Commited to acheiving a set of goals promptly along with orgnizational Goals
 
 - 2: My Hands-On Experience and coupled with continuous learning ,improvement and I am confident in my ability to quickly grasp new concepts and technologies. I am also a collaborative team player who thrives in environments where I can contribute my ideas and work closely with others to achieve common goals. Which makes me a great asset to the team and organization
 
