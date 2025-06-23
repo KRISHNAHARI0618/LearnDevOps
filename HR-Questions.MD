@@ -22,7 +22,7 @@
 - I tend to channel my focus on a singular task at a time ensuring through concentration
 
 **4: Why are leaving your current Job ?**
-- 1: I felt that the position which i have been working is no longer providing me with chance to grow professionally so i thought i require a new oppurtunity that would allow me to continue to devlop my skills and knowledge and also I believe that change in work environment will stimulate my creativity and drive for success that why when i seen a job posting here i would like to apply here.
+- 1: I felt that the position which i have been working is lowered in providing me with chance to grow professionally so i thought i require a new oppurtunity that would allow me to continue to devlop my skills and knowledge and also I believe that change in work environment will stimulate my creativity and drive for success that why when i seen a job posting here i would like to apply here.
 
 - 2: I feel that i am ready to take a new challenges & responsibilities to expand my skillset which aligns with my career goals and also to develop professionally.
 
