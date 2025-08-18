@@ -1,0 +1,50 @@
+name: AKS Upgrade
+
+on:
+  workflow_dispatch:
+    inputs:
+      subscription_id:
+        description: "Azure subscription ID"
+        required: true
+      target_version:
+        description: "Target Kubernetes version"
+        required: true
+      clusters_json:
+        description: "Clusters config JSON"
+        required: true
+        default: |
+          [
+            {"name": "aks1", "resource_group": "rg1"},
+            {"name": "aks2", "resource_group": "rg2"}
+          ]
+
+jobs:
+  aks-upgrade:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          sudo az extension add --name aks-preview || true
+          az version
+          pip install -r requirements.txt || true
+
+      - name: Azure Login
+        uses: azure/login@v2
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Run upgrade script
+        env:
+          AZ_SUBSCRIPTION: ${{ github.event.inputs.subscription_id }}
+          TARGET_VERSION: ${{ github.event.inputs.target_version }}
+          AKS_CLUSTERS: ${{ github.event.inputs.clusters_json }}
+        run: |
+          python aks_upgrade.py
